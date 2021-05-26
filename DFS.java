@@ -7,16 +7,25 @@ import java.lang.*;
 
 
 public class DFS {
+    private List<ArrayList<Integer>> pathList1 = new ArrayList<ArrayList<Integer>>();
+    private List<ArrayList<Integer>> pathList2 = new ArrayList<ArrayList<Integer>>();
+
+    private  String st ="";
+
 
     private int v;
+
 
     private ArrayList<Integer>[] adjList;
 
     public DFS(int vertices) {
         this.v = vertices;
+        pathList1.clear();
+
 
         initAdjList();
     }
+
 
     private void initAdjList()
     {
@@ -46,6 +55,14 @@ public class DFS {
 
         if (u.equals(d)) {
             System.out.println(localPathList);
+            st+=localPathList+"\n";
+            ArrayList<Integer> tmp = new ArrayList<>();
+
+            for (int i = 0; i< localPathList.size(); i++){
+                tmp.add(localPathList.get(i));
+            }
+            pathList1.add(tmp);
+            pathList2.add(tmp);
             return;
         }
 
@@ -62,5 +79,41 @@ public class DFS {
         isVisited[u] = false;
     }
 
-}
+    public  ArrayList getValue() {
+        int index=0;
+        int temp=10000;
 
+
+
+        List<ArrayList<Integer>> pathList1 = this.pathList1;
+        pathList1 = this.pathList1;
+        for (int k=0; k<pathList1.size(); k++){
+            if (temp>pathList1.get(k).size()){
+                temp=pathList1.get(k).size();
+                index=k;
+            }
+        }
+
+        return pathList1.get(index);
+
+    }
+
+    public ArrayList clp(){
+        pathList1.clear();
+        return pathList2.get(0);
+    }
+
+
+
+
+    public String getString(){
+        String k = new String(st);
+        st = "";
+        return k;
+    }
+
+    public String clearString(){
+        return st="";
+    }
+
+}
